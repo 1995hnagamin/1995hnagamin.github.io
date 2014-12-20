@@ -205,8 +205,6 @@ function manage_condition_input(course, date) {
     title: course.name,
     buttons: {
       "submit": function() {
-      console.log([$("#prompt-presence").val(),
-        $("#prompt-memo").val()]);
         push_lecture({
           courseid: course.courseid,
           date: date,
