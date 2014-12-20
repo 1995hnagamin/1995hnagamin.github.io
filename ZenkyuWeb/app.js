@@ -205,6 +205,8 @@ function manage_condition_input(course, date) {
     title: course.name,
     buttons: {
       "submit": function() {
+      console.log([$("#prompt-presence").val(),
+        $("#prompt-memo").val()]);
         push_lecture({
           courseid: course.courseid,
           date: date,
@@ -213,9 +215,11 @@ function manage_condition_input(course, date) {
         });
         render_edit_todays_condition_view();
         $(this).dialog("close");
+        $("#prompt").remove();
       },
       "cancel": function() {
         $(this).dialog("close");
+        $("#prompt").remove();
       }
     }
   });
