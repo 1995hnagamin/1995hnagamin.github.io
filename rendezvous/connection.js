@@ -3,7 +3,7 @@ var connections = [];
 function add_friend(conn) {
   connections.push(conn);
   register_marker(conn.peer, null);
-  alert(conn.peer);
+  alert("add " + conn.peer);
 }
 
 function notify_current_location(coords) {
@@ -13,6 +13,7 @@ function notify_current_location(coords) {
   });
   for (var conn in connections) {
     conn.send(message);
+    alert("sent " + message + " to " + conn.peer);
   }
 }
 
@@ -26,7 +27,7 @@ function listen(peer) {
   });
 
   conn.on('data', function(data) {
-    alert(data);
+    alert("received " + data);
   })
 }
 
