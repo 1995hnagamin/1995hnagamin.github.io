@@ -22,13 +22,15 @@ function listen(peer) {
     $("#share").html(window.location.href + "?parent=" + id);
   });
   
-  var conn = peer.on('connection', function(conn) {
+  peer.on('connection', function(conn) {
+    alert("listen " + conn.peer);
     add_friend(conn);
+  
+    conn.on('data', function(data) {
+      alert("received " + data);
+    })
   });
 
-  conn.on('data', function(data) {
-    alert("received " + data);
-  })
 }
 
 $.urlParam = function(name){
