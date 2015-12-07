@@ -46,6 +46,6 @@ function connect_to_parent(peer) {
   var paren = $.urlParam('parent');
   if (paren != null) {
     var conn = peer.connect(paren);
-    add_friend(paren);
+    add_friend(conn);
   }
 }
