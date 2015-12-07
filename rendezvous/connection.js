@@ -1,8 +1,19 @@
-var friends = [];
+var connections = [];
 
-function add_friend(id) {
-  friends.push(id);
-  alert(id);
+function add_friend(conn) {
+  connections.push(conn);
+  register_marker(conn.peer, null);
+  alert(conn.peer);
+}
+
+function notify_current_location(coords) {
+  var message = JSON.stringify({
+    latitude: coords.latitude,
+    longitude: coords.longitude
+  });
+  for (var conn in connections) {
+    conn.send(message);
+  }
 }
 
 function listen(peer) {
@@ -11,8 +22,12 @@ function listen(peer) {
   });
   
   var conn = peer.on('connection', function(conn) {
-    add_friend(conn.peer);
+    add_friend(conn);
   });
+
+  conn.on('data', function(data) {
+    alert(data);
+  })
 }
 
 $.urlParam = function(name){
@@ -31,4 +46,3 @@ function connect_to_parent(peer) {
     add_friend(paren);
   }
 }
-

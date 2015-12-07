@@ -14,6 +14,9 @@ function initialize_map(coords) {
 }
 
 function register_marker(id, coords) {
+  if (coords == null) {
+    coords = {latitude: 0, longitude: 0};
+  }
   var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
   var marker = new google.maps.Marker({
     position: latlng,
@@ -35,6 +38,8 @@ function watch_position_success(position) {
   if (map == null) {
     initialize_map(coords);
   }
+
+  notify_current_location(coords);
   update_marker("@me", coords);
 };
 
