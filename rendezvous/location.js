@@ -34,7 +34,6 @@ function update_marker(id, coords) {
 }
 
 function watch_position_success(position) {
-  alert("position: " + JSON.stringify(position));
   var coords = position.coords;
   if (map == null) {
     initialize_map(coords);
