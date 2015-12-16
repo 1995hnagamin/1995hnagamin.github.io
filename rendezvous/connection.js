@@ -11,10 +11,11 @@ function notify_current_location(coords) {
     latitude: coords.latitude,
     longitude: coords.longitude
   });
-  for (var conn in connections) {
+  
+  connections.forEach(function(conn) {
     conn.send(message);
     alert("sent " + message + " to " + conn.peer);
-  }
+  });
 }
 
 function listen(peer) {
